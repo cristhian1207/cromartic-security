@@ -2,12 +2,15 @@ package com.cchacalcaje.cromartic.security.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -42,6 +45,9 @@ public class Role implements Serializable{
 	@Column(columnDefinition="NVARCHAR(25)")
 	private String updated_user;
 
+	@ManyToMany(mappedBy="roles" , fetch=FetchType.LAZY)
+	private List<User> users;
+	
 	protected Role() { }
 	
 	public Role(Long id, String rolename, String description, Date created_date, Date updated_date, String created_user,

@@ -8,6 +8,7 @@ public interface IUserService {
 
 	public List<User> findAll();
 	public User findByUsername(String username);
-	public User findByUsernameAndPassword(String username, String password);
-	
+	public User save(User user);
+	public User update(User user);
+	public void delete(User user);
 }

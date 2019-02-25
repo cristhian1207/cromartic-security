@@ -2,12 +2,17 @@ package com.cchacalcaje.cromartic.security.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -54,10 +59,22 @@ public class User implements Serializable{
 	@Column(nullable=false, columnDefinition="TINYINT(1)")	
 	private Boolean status;	
 	
+	@Column(columnDefinition="NVARCHAR(255)")
+	private String description;
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+			name="tb_user_role",
+			joinColumns = @JoinColumn(name="user_id"),
+			inverseJoinColumns = @JoinColumn(name="role_id")
+			)
+	private List<Role> roles; 
+	
 	protected User() { }
 	
 	public User(Long id, String username, String name, String pat_lastname, String mat_lastname, String email,
-			String password, String image, Date created_date, Date updated_date, Boolean status) {
+			String password, String image, Date created_date, Date updated_date, Boolean status, String description,
+			List<Role> roles) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -70,6 +87,8 @@ public class User implements Serializable{
 		this.created_date = created_date;
 		this.updated_date = updated_date;
 		this.status = status;
+		this.description = description;
+		this.roles = roles;
 	}
 
 	public Long getId() {
@@ -160,11 +179,20 @@ public class User implements Serializable{
 		this.status = status;
 	}
 
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", name=" + name + ", pat_lastname=" + pat_lastname
 				+ ", mat_lastname=" + mat_lastname + ", email=" + email + ", password=" + password + ", image=" + image
-				+ ", created_date=" + created_date + ", updated_date=" + updated_date + ", status=" + status + "]";
+				+ ", created_date=" + created_date + ", updated_date=" + updated_date + ", status=" + status
+				+ ", description=" + description + ", roles=" + roles + "]";
 	}
-			
+
 }
