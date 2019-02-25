@@ -18,4 +18,5 @@ public interface IJwtService {
 	public String getUsername(Claims claims);
 	public Collection<? extends GrantedAuthority> getRoles(Claims claims) throws IOException ;
 	public String resolve(String token);
+	public String refreshToken(String authorization)  throws JsonProcessingException;
 }

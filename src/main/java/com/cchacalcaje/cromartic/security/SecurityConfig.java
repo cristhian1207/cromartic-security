@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity webSecurity) throws Exception{
 		webSecurity
 			.ignoring()
-				.antMatchers(HttpMethod.GET, "/users", "/users/**")
+				.antMatchers(HttpMethod.GET, "/users", "/users/**", "/refresh-token")
 			.and()
 			.ignoring()
 				.antMatchers("/error");

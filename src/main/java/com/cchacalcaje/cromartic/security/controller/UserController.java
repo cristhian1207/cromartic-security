@@ -1,10 +1,13 @@
-package com.cchacalcaje.cromartic.security.controllers;
+package com.cchacalcaje.cromartic.security.controller;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJacksonValue;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,25 +21,33 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.cchacalcaje.cromartic.security.entity.User;
 import com.cchacalcaje.cromartic.security.exception.ResourceNotFoundException;
 import com.cchacalcaje.cromartic.security.service.IUserService;
+import com.cchacalcaje.cromartic.security.utils.FilterFields;
 
 @RestController
 @RequestMapping(value="users")
+@CrossOrigin(origins= {"http://localhost:4200"})
 public class UserController {
 
 	@Autowired
 	private IUserService userService;
 	
+	@Autowired
+	private FilterFields filterFields;
+	
+	private static final List<String> USER_FIELDS = Arrays.asList("username", "name", "pat_lastname", "mat_lastname",
+			"email", "image", "created_date", "updated_date");
+	
 	@GetMapping("")
-	public List<User> findAll(){
-		return userService.findAll();
+	public MappingJacksonValue findAll(){
+		return filterFields.filterEntity(userService.findAll(), "user_filter", USER_FIELDS);
 	}
 	
 	@GetMapping("/{username}")
-	public User findByUsername(@PathVariable String username) {	
+	public MappingJacksonValue findByUsername(@PathVariable String username) {	
 		User user = userService.findByUsername(username);
 		if(user == null)
-			throw new ResourceNotFoundException("user");
-		return user;
+			throw new ResourceNotFoundException("user");		
+		return filterFields.filterEntity(user, "user_filter", USER_FIELDS);
 	}
 	
 	@PostMapping("")

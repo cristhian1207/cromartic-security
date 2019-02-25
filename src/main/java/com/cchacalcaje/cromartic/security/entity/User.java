@@ -17,8 +17,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+
 @Entity
 @Table(name="tb_user")
+@JsonFilter("user_filter")
 public class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;

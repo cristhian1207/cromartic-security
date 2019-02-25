@@ -26,13 +26,13 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 	@Override
 	@Transactional(readOnly=true)
 	public List<User> findAll() {
-		return userDao.findAll();
+		return userDao.findByStatus(Boolean.valueOf(true));
 	}
 	
 	@Override
 	@Transactional(readOnly=true)
 	public User findByUsername(String username) {
-		return userDao.findByUsername(username);
+		return userDao.findByUsernameAndStatus(username, Boolean.valueOf(true));
 	}
 
 	@Override
