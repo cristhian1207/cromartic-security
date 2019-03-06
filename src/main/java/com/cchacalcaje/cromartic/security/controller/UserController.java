@@ -24,7 +24,7 @@ import com.cchacalcaje.cromartic.security.service.IUserService;
 import com.cchacalcaje.cromartic.security.utils.FilterFields;
 
 @RestController
-@RequestMapping(value="users")
+@RequestMapping("/users")
 @CrossOrigin(origins= {"http://localhost:4200"})
 public class UserController {
 

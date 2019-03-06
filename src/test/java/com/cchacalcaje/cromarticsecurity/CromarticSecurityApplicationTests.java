@@ -11,6 +11,9 @@ public class CromarticSecurityApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		System.out.println("###########################");
+		System.out.println("##########TESTING##########");
+		System.out.println("###########################");
 	}
 
 }
