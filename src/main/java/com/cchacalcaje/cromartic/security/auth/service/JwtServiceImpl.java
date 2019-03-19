@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 
 import com.cchacalcaje.cromartic.security.auth.SimpleGrantedAuthorityMixin;
 import com.cchacalcaje.cromartic.security.entity.Role;
-import com.cchacalcaje.cromartic.security.service.UserServiceImpl;
+import com.cchacalcaje.cromartic.security.service.impl.UserServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

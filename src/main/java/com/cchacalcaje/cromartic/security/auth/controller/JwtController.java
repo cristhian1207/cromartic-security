@@ -2,7 +2,7 @@ package com.cchacalcaje.cromartic.security.auth.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +18,7 @@ public class JwtController {
 	@Autowired
 	private IJwtService jwtService;
 	
-	@GetMapping("/refresh-token")
+	@PostMapping("/refresh-token")
 	public Token refreshToken(@RequestHeader("Authorization") String authorization) {
 		if(!jwtService.validate(authorization))
 			throw new TokenInvalidException();

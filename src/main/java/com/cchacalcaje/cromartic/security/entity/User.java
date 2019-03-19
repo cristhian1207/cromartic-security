@@ -190,6 +190,14 @@ public class User implements Serializable{
 		this.roles = roles;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", name=" + name + ", pat_lastname=" + pat_lastname

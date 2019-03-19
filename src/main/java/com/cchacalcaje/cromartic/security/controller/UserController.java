@@ -35,7 +35,7 @@ public class UserController {
 	private FilterFields filterFields;
 	
 	private static final List<String> USER_FIELDS = Arrays.asList("username", "name", "pat_lastname", "mat_lastname",
-			"email", "image", "created_date", "updated_date");
+			"email", "image", "created_date", "updated_date", "description");
 	
 	@GetMapping("")
 	public MappingJacksonValue findAll(){

@@ -1,4 +1,4 @@
-package com.cchacalcaje.cromartic.security.service;
+package com.cchacalcaje.cromartic.security.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cchacalcaje.cromartic.security.dao.IUserDao;
 import com.cchacalcaje.cromartic.security.entity.Role;
 import com.cchacalcaje.cromartic.security.entity.User;
+import com.cchacalcaje.cromartic.security.service.IUserService;
 
 @Service
 public class UserServiceImpl implements IUserService, UserDetailsService {

@@ -1,4 +1,4 @@
-package com.cchacalcaje.cromartic.security;
+package com.cchacalcaje.cromartic.security.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.cchacalcaje.cromartic.security.auth.filter.JwtAuthenticationFilter;
 import com.cchacalcaje.cromartic.security.auth.filter.JwtAuthorizationFilter;
 import com.cchacalcaje.cromartic.security.auth.service.IJwtService;
-import com.cchacalcaje.cromartic.security.service.UserServiceImpl;
+import com.cchacalcaje.cromartic.security.service.impl.UserServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -50,7 +50,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity webSecurity) throws Exception{
 		webSecurity
 			.ignoring()
-				.antMatchers(HttpMethod.GET, "/users", "/users/**", "/refresh-token")
+				.antMatchers(HttpMethod.GET, "/users", "/users/**")
+			.and()
+			.ignoring()
+				.antMatchers(HttpMethod.POST, "/users", "/refresh-token")
 			.and()
 			.ignoring()
 				.antMatchers("/error");
